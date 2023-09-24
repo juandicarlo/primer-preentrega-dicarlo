@@ -1,42 +1,62 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Form from 'react-bootstrap/Form';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import CardWidget from './components/cardwidget/cardwidget';
 
-function Navbar() {
+function NavScrollExample() {
+  const product = {
+    name: 'Zapatillas Nike',
+    image: 'zapatilla1.jpg',
+    description: 'Zapatillas blancas nike',
+    price: 91.000,
+  };
+
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-    <div className="container">
-      <Link className="navbar-brand" to="/">Mi Sitio</Link>
-      <button
-        className="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span className="navbar-toggler-icon"></span>
-      </button>
-      <div className="collapse navbar-collapse" id="navbarNav">
-        <ul className="navbar-nav ml-auto">
-          <li className="nav-item">
-            <Link className="nav-link" to="/">Inicio</Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/productos">Productos</Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/contacto">Contacto</Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/quienes-somos">Quiénes Somos</Link>
-          </li>
-        </ul>
-      </div>
+    <div>
+      <Navbar expand="lg" className="bg-body-tertiary">
+        <Container fluid>
+          <Navbar.Brand href="#">Store</Navbar.Brand>
+          <Navbar.Toggle aria-controls="navbarScroll" />
+          <Navbar.Collapse id="navbarScroll">
+            <Nav
+              className="me-auto my-2 my-lg-0"
+              style={{ maxHeight: '100px' }}
+              navbarScroll
+            >
+              <Nav.Link href="#action1">Home</Nav.Link>
+              <Nav.Link href="#action2">Nosotros</Nav.Link>
+              <NavDropdown title="Link" id="navbarScrollingDropdown">
+                <NavDropdown.Item href="#action3">Contacto</NavDropdown.Item>
+                <NavDropdown.Item href="#action4">
+                  Another action
+                </NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item href="#action5">
+                  Something else here
+                </NavDropdown.Item>
+              </NavDropdown>
+              <Nav.Link href="#" disabled>
+                Productos
+              </Nav.Link>
+            </Nav>
+            <Form className="d-flex">
+              <Form.Control
+                type="search"
+                placeholder="Search"
+                className="me-2"
+                aria-label="Search"
+              />
+              <Button variant="outline-success">Buscar</Button>
+            </Form>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+      <CardWidget product={product} /> {}
     </div>
-  </nav>
-  )
+  );
+}
 
-};
-
-export default Navbar;
+export default NavScrollExample;
